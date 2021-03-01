@@ -2,7 +2,128 @@
 # yarn lockfile v1
 
 
+"@hapi/hoek@^9.0.0":
+  version "9.1.1"
+  resolved "https://localhost:4873/@hapi%2fhoek/-/hoek-9.1.1.tgz#9daf5745156fd84b8e9889a2dc721f0c58e894aa"
+  integrity sha512-CAEbWH7OIur6jEOzaai83jq3FmKmv4PmX1JYfs9IrYcGEVI/lyL1EXJGCj7eFVJ0bg5QR8LMxBlEtA+xKiLpFw==
+
+"@hapi/topo@^5.0.0":
+  version "5.0.0"
+  resolved "https://localhost:4873/@hapi%2ftopo/-/topo-5.0.0.tgz#c19af8577fa393a06e9c77b60995af959be721e7"
+  integrity sha512-tFJlT47db0kMqVm3H4nQYgn6Pwg10GTZHb1pwmSiv1K4ks6drQOtfEF5ZnPjkvC+y4/bUPHK+bc87QvLcL+WMw==
+  dependencies:
+    "@hapi/hoek" "^9.0.0"
+
+"@nestjs/common@^7.6.13":
+  version "7.6.13"
+  resolved "https://localhost:4873/@nestjs%2fcommon/-/common-7.6.13.tgz#597558afedfddeb5021fe8a154327ee082279ab8"
+  integrity sha512-xijw6so4yA8Ywi8mnrA7Kz97ZC36u20Eyb5/XvmokdLcgTcTyHVdE39r44JYnjHPf8SKZoJ965zdu/fKl4s4GQ==
+  dependencies:
+    axios "0.21.1"
+    iterare "1.2.1"
+    tslib "2.1.0"
+    uuid "8.3.2"
+
+"@sideway/address@^4.1.0":
+  version "4.1.1"
+  resolved "https://localhost:4873/@sideway%2faddress/-/address-4.1.1.tgz#9e321e74310963fdf8eebfbee09c7bd69972de4d"
+  integrity sha512-+I5aaQr3m0OAmMr7RQ3fR9zx55sejEYR2BFJaxL+zT3VM2611X0SHvPWIbAUBZVTn/YzYKbV8gJ2oT/QELknfQ==
+  dependencies:
+    "@hapi/hoek" "^9.0.0"
+
+"@sideway/formula@^3.0.0":
+  version "3.0.0"
+  resolved "https://localhost:4873/@sideway%2fformula/-/formula-3.0.0.tgz#fe158aee32e6bd5de85044be615bc08478a0a13c"
+  integrity sha512-vHe7wZ4NOXVfkoRb8T5otiENVlT7a3IAiw7H5M2+GO+9CDgcVUUsX1zalAztCmwyOr2RUTGJdgB+ZvSVqmdHmg==
+
+"@sideway/pinpoint@^2.0.0":
+  version "2.0.0"
+  resolved "https://localhost:4873/@sideway%2fpinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
+  integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
+
+"@types/dotenv@^8.2.0":
+  version "8.2.0"
+  resolved "https://localhost:4873/@types%2fdotenv/-/dotenv-8.2.0.tgz#5cd64710c3c98e82d9d15844375a33bf1b45d053"
+  integrity sha512-ylSC9GhfRH7m1EUXBXofhgx4lUWmFeQDINW5oLuS+gxWdfUeW4zJdeVTYVkexEW+e2VUvlZR2kGnGGipAWR7kw==
+  dependencies:
+    dotenv "*"
+
+"@types/js-yaml@^4.0.0":
+  version "4.0.0"
+  resolved "https://localhost:4873/@types%2fjs-yaml/-/js-yaml-4.0.0.tgz#d1a11688112091f2c711674df3a65ea2f47b5dfb"
+  integrity sha512-4vlpCM5KPCL5CfGmTbpjwVKbISRYhduEJvvUWsH5EB7QInhEj94XPZ3ts/9FPiLZFqYO0xoW4ZL8z2AabTGgJA==
+
+"@types/lodash@^4.14.168":
+  version "4.14.168"
+  resolved "https://localhost:4873/@types%2flodash/-/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
+  integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
+
+"@types/node@^14.14.31":
+  version "14.14.31"
+  resolved "https://localhost:4873/@types%2fnode/-/node-14.14.31.tgz#72286bd33d137aa0d152d47ec7c1762563d34055"
+  integrity sha512-vFHy/ezP5qI0rFgJ7aQnjDXwAMrG0KqqIH7tQG5PPv3BWBayOPIQNBjVc/P6hhdZfMx51REc6tfDNXHUio893g==
+
+argparse@^2.0.1:
+  version "2.0.1"
+  resolved "https://localhost:4873/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
+  integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
+
+axios@0.21.1:
+  version "0.21.1"
+  resolved "https://localhost:4873/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
+
+dotenv@*, dotenv@^8.2.0:
+  version "8.2.0"
+  resolved "https://localhost:4873/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+
+follow-redirects@^1.10.0:
+  version "1.13.3"
+  resolved "https://localhost:4873/follow-redirects/-/follow-redirects-1.13.3.tgz#e5598ad50174c1bc4e872301e82ac2cd97f90267"
+  integrity sha512-DUgl6+HDzB0iEptNQEXLx/KhTmDb8tZUHSeLqpnjpknR70H0nC2t9N73BK6fN4hOvJ84pKlIQVQ4k5FFlBedKA==
+
+iterare@1.2.1:
+  version "1.2.1"
+  resolved "https://localhost:4873/iterare/-/iterare-1.2.1.tgz#139c400ff7363690e33abffa33cbba8920f00042"
+  integrity sha512-RKYVTCjAnRthyJes037NX/IiqeidgN1xc3j1RjFfECFp28A1GVwK9nA+i0rJPaHqSZwygLzRnFlzUuHFoWWy+Q==
+
+joi@^17.4.0:
+  version "17.4.0"
+  resolved "https://localhost:4873/joi/-/joi-17.4.0.tgz#b5c2277c8519e016316e49ababd41a1908d9ef20"
+  integrity sha512-F4WiW2xaV6wc1jxete70Rw4V/VuMd6IN+a5ilZsxG4uYtUXWu2kq9W5P2dz30e7Gmw8RCbY/u/uk+dMPma9tAg==
+  dependencies:
+    "@hapi/hoek" "^9.0.0"
+    "@hapi/topo" "^5.0.0"
+    "@sideway/address" "^4.1.0"
+    "@sideway/formula" "^3.0.0"
+    "@sideway/pinpoint" "^2.0.0"
+
+js-yaml@^4.0.0:
+  version "4.0.0"
+  resolved "https://localhost:4873/js-yaml/-/js-yaml-4.0.0.tgz#f426bc0ff4b4051926cd588c71113183409a121f"
+  integrity sha512-pqon0s+4ScYUvX30wxQi3PogGFAlUyH0awepWvwkj4jD4v+ova3RiYw8bmA6x2rDrEaj8i/oWKoRxpVNW+Re8Q==
+  dependencies:
+    argparse "^2.0.1"
+
+lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://localhost:4873/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
+tslib@2.1.0:
+  version "2.1.0"
+  resolved "https://localhost:4873/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
+  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
+
 typescript@^4.2.2:
   version "4.2.2"
   resolved "https://localhost:4873/typescript/-/typescript-4.2.2.tgz#1450f020618f872db0ea17317d16d8da8ddb8c4c"
   integrity sha512-tbb+NVrLfnsJy3M59lsDgrzWIflR4d4TIUjz+heUnHZwdF7YsrMTKoRERiIvI2lvBG95dfpLxB21WZhys1bgaQ==
+
+uuid@8.3.2:
+  version "8.3.2"
+  resolved "https://localhost:4873/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==

@@ -1,26 +1,27 @@
-import { ModuleConfigOptions } from '../types/moduleConfig.interface';
-import { isObject as obj } from 'lodash';
-import { ConfigModule } from '../config.module';
-import { ConfigService } from './config.service';
-import { DEFAULT_CONFIG_OPTIONS } from '../defaults/default.config';
+import { ModuleConfigOptions } from "../types/moduleConfig.interface";
+import { isObject as obj } from "lodash";
+import { ConfigModule } from "../config.module";
+import { ConfigService } from "./config.service";
+import { DEFAULT_CONFIG_OPTIONS } from "../defaults/default.config";
 
 export class ModuleConfigService {
   readonly config: object;
 
   constructor(vars: object, property: string, config?: ModuleConfigOptions) {
     config = { ...DEFAULT_CONFIG_OPTIONS, ...(config ?? {}) };
-    this.config = this.createPrototypeChain(vars, property.split('.'));
+    this.config = this.createPrototypeChain(vars, property.split("."));
     if (config.schema) {
       const valid = ConfigService.validateSchema(
         config.schema,
         this.config,
-        `ModuleConfig.${property}`,
+        `ModuleConfig.${property}`
       );
     }
   }
 
   createPrototypeChain(root: object, path: string[]) {
     const prop = path.shift();
+    if (!prop) return {};
     if (!(prop in root)) throw new Error(`Missing property: ${prop}`);
 
     if (!obj(root[prop]))
