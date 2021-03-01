@@ -1,22 +1,32 @@
 import { ModuleConfigOptions } from "../types/moduleConfig.interface";
 import { isObject as obj } from "lodash";
-import { ConfigModule } from "../config.module";
 import { ConfigService } from "./config.service";
 import { DEFAULT_CONFIG_OPTIONS } from "../defaults/default.config";
 
 export class ModuleConfigService {
-  readonly config: object;
+  config: object;
 
-  constructor(vars: object, property: string, config?: ModuleConfigOptions) {
-    config = { ...DEFAULT_CONFIG_OPTIONS, ...(config ?? {}) };
-    this.config = this.createPrototypeChain(vars, property.split("."));
-    if (config.schema) {
-      const valid = ConfigService.validateSchema(
-        config.schema,
+  constructor(
+    private internal_config: object,
+    private property: string,
+    private options?: ModuleConfigOptions
+  ) {
+    options = { ...DEFAULT_CONFIG_OPTIONS, ...(options ?? {}) };
+  }
+
+  async initialize() {
+    this.config = this.createPrototypeChain(
+      this.internal_config,
+      this.property.split(".")
+    );
+    if (this.options.schema) {
+      this.config = await ConfigService.validateSchema(
+        this.options.schema,
         this.config,
-        `ModuleConfig.${property}`
+        `ModuleConfig.${this.property}`
       );
     }
+    Object.freeze(this.config);
   }
 
   createPrototypeChain(root: object, path: string[]) {
