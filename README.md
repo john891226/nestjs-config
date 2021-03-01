@@ -5,7 +5,7 @@ Configuration module for [Nest](https://github.com/nestjs/nest) based on: [doten
 Allows reading recursively a config folder and loading all configuration files to a unique object, creating a prototype chain for configuration properties inheritance;
 ## Installation
 ```bash
-yarn add @
+yarn add nestjs-config-module
 ```
 
 
