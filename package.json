@@ -1,0 +1,13 @@
+{
+  "name": "@atlasjs/config",
+  "version": "1.0.0",
+  "description": "Nestjs module for manage projects and modules configurations",
+  "main": "index.js",
+  "repository": "http://git.geocuba.cu/atlasjs/nestjs/core/modules/config.git",
+  "author": "john891226",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "typescript": "^4.2.2"
+  }
+}
