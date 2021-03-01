@@ -30,6 +30,8 @@
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
-    "@nestjs/common": "^6.10.0 || ^7.0.0"
+    "@nestjs/common": "^6.10.0 || ^7.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.6"
   }
 }
