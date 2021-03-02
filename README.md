@@ -87,7 +87,7 @@ export class AppModule {}
 export class UsersModule {}
 ```
 1. Inject ConfigProvider into ModuleProvider
-```js
+```
 @Injectable()
 export class UsersService {
   constructor(
