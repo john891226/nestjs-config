@@ -23,7 +23,9 @@ config
     |   users.yml
     |   .env
 ```
+
 config/db.yml
+
 ```yml
 dbname: db
 port: 5432
@@ -34,25 +36,31 @@ schemas:
   - public
   - config
 ```
+
 config/.env
+
 ```ini
 root=root
 passw=root
 port=3000
 ```
+
 config/users/db.yml
+
 ```yml
 dbname: users
 schemas:
   - users
 ```
 config/users/users.yml
+
 ```yml
 strategies:
   - local
   - jwt
 ```
 config/users/.env
+
 ```ini
 CACHE=1
 ```
