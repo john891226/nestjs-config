@@ -5,7 +5,7 @@ Configuration module for [Nest](https://github.com/nestjs/nest) based on: [doten
 Allows reading recursively a config folder and loading all configuration files to a unique object, creating a prototype chain for configuration properties inheritance;
 ## Installation
 ```bash
-yarn add nestjs-config-module
+yarn add nestjs-rconfig-module
 ```
 ## Stay in touch
 ---
@@ -66,7 +66,7 @@ CACHE=1
 ```
 1. Import ConfigModule into root application
 ```
-import { ConfigModule } from 'nestjs-config-module';
+import { ConfigModule } from 'nestjs-rconfig-module';
 @Module({
   imports: [
     ConfigModule.forRoot({})
