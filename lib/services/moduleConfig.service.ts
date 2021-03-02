@@ -1,27 +1,47 @@
 import { ModuleConfigOptions } from "../types/moduleConfig.interface";
 import { isObject as obj } from "lodash";
-import { ConfigModule } from "../config.module";
 import { ConfigService } from "./config.service";
 import { DEFAULT_CONFIG_OPTIONS } from "../defaults/default.config";
 
 export class ModuleConfigService {
-  readonly config: object;
+  config: object;
+  private internal_config: object;
 
-  constructor(vars: object, property: string, config?: ModuleConfigOptions) {
-    config = { ...DEFAULT_CONFIG_OPTIONS, ...(config ?? {}) };
-    this.config = this.createPrototypeChain(vars, property.split("."));
-    if (config.schema) {
-      const valid = ConfigService.validateSchema(
-        config.schema,
-        this.config,
-        `ModuleConfig.${property}`
-      );
-    }
+  constructor(
+    private owner: ConfigService,
+    private initial_config: object,
+    private property: string,
+    private options?: ModuleConfigOptions
+  ) {
+    this.options = { ...DEFAULT_CONFIG_OPTIONS, ...(options ?? {}) };
   }
 
-  createPrototypeChain(root: object, path: string[]) {
+  async initialize() {
+    this.internal_config = this.createPrototypeChain(
+      this.initial_config,
+      this.property.split(".")
+    );
+    if (this.options.schema) {
+      this.internal_config = await ConfigService.validateSchema(
+        this.options.schema,
+        this.config,
+        `ModuleConfig.${this.property}`
+      );
+    }
+    // this.config = cfg;
+    this.config = new Proxy(this, {
+      get(t, p: string) {
+        let vars = t.internal_config[p] ?? t.owner.getEnvVar(p);
+        if (vars == null || vars == undefined)
+          throw new Error(`Missing property: "${p}"`);
+        return vars;
+      },
+    });
+  }
+
+  createPrototypeChain(root: object, path: string[]): object {
     const prop = path.shift();
-    if (!prop) return {};
+    if (!prop) return root;
     if (!(prop in root)) throw new Error(`Missing property: ${prop}`);
 
     if (!obj(root[prop]))

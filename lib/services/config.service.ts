@@ -1,13 +1,13 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigOptions } from '../types/config.interface';
-import * as path from 'path';
-import * as fs from 'fs';
-import { ConfigLoader } from '../loaders/loaders.interfaces';
-import * as _ from 'lodash';
-import loaders from '../loaders.config';
-import { Schema } from 'joi';
-import { ModuleConfigService } from './moduleConfig.service';
-import { ModuleConfigOptions } from '../types/moduleConfig.interface';
+import { Injectable, Logger } from "@nestjs/common";
+import { ConfigOptions } from "../types/config.interface";
+import * as path from "path";
+import * as fs from "fs";
+import { ConfigLoader } from "../loaders/loaders.interfaces";
+import * as _ from "lodash";
+import loaders from "../loaders.config";
+import { Schema } from "joi";
+import { ModuleConfigService } from "./moduleConfig.service";
+import { ModuleConfigOptions } from "../types/moduleConfig.interface";
 
 @Injectable()
 export class ConfigService {
@@ -17,7 +17,7 @@ export class ConfigService {
 
   constructor(
     private internal_config: object = {},
-    private readonly OPTIONS: ConfigOptions,
+    private readonly OPTIONS: ConfigOptions
   ) {
     let th = this;
 
@@ -30,28 +30,33 @@ export class ConfigService {
 
   private get(prop: string) {
     let vars = this.internal_config[prop] ?? this.getEnvVar(prop);
-    if (vars == null) throw new Error(`Missing property: "${prop}"`);
+    if (vars == null || vars == undefined)
+      throw new Error(`Missing property: "${prop}"`);
     return vars;
   }
 
-  private getEnvVar(prop: string) {
+  getEnvVar(prop: string) {
     if (this.OPTIONS.ignoreEnvVars) return null;
     const envVar = this.cache[prop] ?? process.env[prop];
     if (this.OPTIONS.cache && !!(envVar ?? false)) this.cache[prop] = envVar;
     return envVar;
   }
 
-  initializeModule(
+  async initializeModule(
     module: string,
-    config?: ModuleConfigOptions,
-  ): ModuleConfigService {
+    config?: ModuleConfigOptions
+  ): Promise<ModuleConfigService> {
     if (module in this.modules) return this.modules[module];
 
-    return (this.modules[module] = new ModuleConfigService(
+    const i = new ModuleConfigService(
+      this,
       this.internal_config,
       module,
-      config,
-    ));
+      config
+    );
+    await i.initialize();
+
+    return (this.modules[module] = i);
   }
 
   static async initialize(config: ConfigOptions) {
@@ -72,13 +77,13 @@ export class ConfigService {
         const i = new cls();
         i.setOptions(config);
         return i;
-      }),
+      })
     );
 
     vars = { ...vars, ...filesConfig };
 
     if (config.schema) {
-      await this.validateSchema(config.schema, vars, 'ProjectConfig');
+      vars = await this.validateSchema(config.schema, vars, "ProjectConfig");
     }
 
     return new this(vars, config);
@@ -86,23 +91,23 @@ export class ConfigService {
 
   static async validateSchema(
     schema: Schema,
-    value: any,
-    context: string = 'ConfigModule',
-  ) {
-    const { error } = schema.validate(value);
+    v: any,
+    context: string = "ConfigModule"
+  ): Promise<object> {
+    const { error, value } = schema.validate(v);
 
     if (error) {
       Logger.error(`Invalid configuration: ${error.message}`, null, context);
       throw error;
     }
 
-    return true;
+    return value as object;
   }
 
   private static async read(
     pPath: string,
     readers: Array<ConfigLoader>,
-    res: object = {},
+    res: object = {}
   ): Promise<object> {
     const files = fs.readdirSync(pPath);
     const pdir = path.parse(pPath);
@@ -124,7 +129,7 @@ export class ConfigService {
               ? fileCfg
               : {
                   [parsed.name]: fileCfg,
-                },
+                }
           );
       } else if (childStats.isDirectory()) {
         const dirCfg = await this.read(childPath, readers);
