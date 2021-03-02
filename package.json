@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-config-module",
+  "name": "nestjs-rconfig-module",
   "version": "1.0.0",
   "description": "Nestjs module for manage projects and modules configurations",
   "main": "dist/index.js",
