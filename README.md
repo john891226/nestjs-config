@@ -5,8 +5,20 @@ Configuration module for [Nest](https://github.com/nestjs/nest) based on: [doten
 Allows reading recursively a config folder and loading all configuration files to a unique object, creating a prototype chain for configuration properties inheritance;
 ## Installation
 ```bash
-yarn add nestjs-config-module
+yarn add @atlasjs/config
 ```
+## Stay in touch
+---
+- Author - [John Paul](john891226@gmail.com)
+
+## Usage
+---
+```ts
+import { ConfigModule } from '@atlasjs/config';
+
+
+```
+
 
 
 

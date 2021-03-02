@@ -5,33 +5,43 @@ import { DEFAULT_CONFIG_OPTIONS } from "../defaults/default.config";
 
 export class ModuleConfigService {
   config: object;
+  private internal_config: object;
 
   constructor(
-    private internal_config: object,
+    private owner: ConfigService,
+    private initial_config: object,
     private property: string,
     private options?: ModuleConfigOptions
   ) {
-    options = { ...DEFAULT_CONFIG_OPTIONS, ...(options ?? {}) };
+    this.options = { ...DEFAULT_CONFIG_OPTIONS, ...(options ?? {}) };
   }
 
   async initialize() {
-    this.config = this.createPrototypeChain(
-      this.internal_config,
+    this.internal_config = this.createPrototypeChain(
+      this.initial_config,
       this.property.split(".")
     );
     if (this.options.schema) {
-      this.config = await ConfigService.validateSchema(
+      this.internal_config = await ConfigService.validateSchema(
         this.options.schema,
         this.config,
         `ModuleConfig.${this.property}`
       );
     }
-    Object.freeze(this.config);
+    // this.config = cfg;
+    this.config = new Proxy(this, {
+      get(t, p: string) {
+        let vars = t.internal_config[p] ?? t.owner.getEnvVar(p);
+        if (vars == null || vars == undefined)
+          throw new Error(`Missing property: "${p}"`);
+        return vars;
+      },
+    });
   }
 
-  createPrototypeChain(root: object, path: string[]) {
+  createPrototypeChain(root: object, path: string[]): object {
     const prop = path.shift();
-    if (!prop) return {};
+    if (!prop) return root;
     if (!(prop in root)) throw new Error(`Missing property: ${prop}`);
 
     if (!obj(root[prop]))

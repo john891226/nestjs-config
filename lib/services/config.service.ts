@@ -30,11 +30,12 @@ export class ConfigService {
 
   private get(prop: string) {
     let vars = this.internal_config[prop] ?? this.getEnvVar(prop);
-    if (vars == null) throw new Error(`Missing property: "${prop}"`);
+    if (vars == null || vars == undefined)
+      throw new Error(`Missing property: "${prop}"`);
     return vars;
   }
 
-  private getEnvVar(prop: string) {
+  getEnvVar(prop: string) {
     if (this.OPTIONS.ignoreEnvVars) return null;
     const envVar = this.cache[prop] ?? process.env[prop];
     if (this.OPTIONS.cache && !!(envVar ?? false)) this.cache[prop] = envVar;
@@ -47,7 +48,12 @@ export class ConfigService {
   ): Promise<ModuleConfigService> {
     if (module in this.modules) return this.modules[module];
 
-    const i = new ModuleConfigService(this.internal_config, module, config);
+    const i = new ModuleConfigService(
+      this,
+      this.internal_config,
+      module,
+      config
+    );
     await i.initialize();
 
     return (this.modules[module] = i);
@@ -87,7 +93,7 @@ export class ConfigService {
     schema: Schema,
     v: any,
     context: string = "ConfigModule"
-  ) {
+  ): Promise<object> {
     const { error, value } = schema.validate(v);
 
     if (error) {
@@ -95,7 +101,7 @@ export class ConfigService {
       throw error;
     }
 
-    return value;
+    return value as object;
   }
 
   private static async read(
