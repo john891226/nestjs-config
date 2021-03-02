@@ -14,7 +14,7 @@ yarn add @atlasjs/config
 ## Usage
 ---
 1. Create configuration folder structure: Example
-```
+```txt
 config
 |   db.yml
 |   .env
@@ -22,9 +22,8 @@ config
     |   db.yml
     |   users.yml
     |   .env
-
 ```
-db.yml
+config/db.yml
 ```yml
 dbname: db
 port: 5432
@@ -35,25 +34,25 @@ schemas:
   - public
   - config
 ```
-.env
+config/.env
 ```ini
 root=root
 passw=root
 port=3000
 ```
-users/db.yml
+config/users/db.yml
 ```yml
 dbname: users
 schemas:
   - users
 ```
-users/users.yml
+config/users/users.yml
 ```yml
 strategies:
   - local
   - jwt
 ```
-users/.env
+config/users/.env
 ```ini
 CACHE=1
 ```
