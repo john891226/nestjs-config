@@ -19,9 +19,9 @@ config
 |   db.yml
 |   .env
 |-- users
-    |   db.yml
-    |   users.yml
-    |   .env
+|    |   db.yml
+|    |   users.yml
+|    |   .env
 ```
 
 config/db.yml
