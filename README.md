@@ -14,7 +14,7 @@ yarn add @atlasjs/config
 ## Usage
 ---
 1. Create configuration folder structure: Example
-```txt
+```
 config
 |   db.yml
 |   .env
@@ -26,7 +26,7 @@ config
 
 config/db.yml
 
-```yml
+```
 dbname: db
 port: 5432
 host: db.host
@@ -47,25 +47,25 @@ port=3000
 
 config/users/db.yml
 
-```yml
+```
 dbname: users
 schemas:
   - users
 ```
 config/users/users.yml
 
-```yml
+```
 strategies:
   - local
   - jwt
 ```
 config/users/.env
 
-```ini
+```
 CACHE=1
 ```
 1. Import ConfigModule into root application
-```ts
+```
 import { ConfigModule } from '@atlasjs/config';
 @Module({
   imports: [
@@ -74,8 +74,8 @@ import { ConfigModule } from '@atlasjs/config';
 })
 export class AppModule {}
 ```
-3. Import ConfigModule into another child module
-```ts
+1. Import ConfigModule into another child module
+```
 @Module({
   imports: [
     /***
@@ -86,8 +86,8 @@ export class AppModule {}
 })
 export class UsersModule {}
 ```
-4. Inject ConfigProvider into ModuleProvider
-```ts
+1. Inject ConfigProvider into ModuleProvider
+```
 @Injectable()
 export class UsersService {
   constructor(
@@ -108,8 +108,8 @@ export class UsersService {
 }
 
 ```
-5. Result
-```ts
+1. Result
+```
 console.log(this.module_config.config)
 ```
 ### Output
