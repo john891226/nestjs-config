@@ -14,7 +14,7 @@ yarn add @atlasjs/config
 ## Usage
 ---
 1. Create configuration folder structure: Example
-```bash
+```
 config
 |   db.yml
 |   .env
@@ -24,8 +24,7 @@ config
     |   .env
 
 ```
-
- db.yml
+db.yml
 ```yml
 dbname: db
 port: 5432
@@ -58,7 +57,7 @@ users/.env
 ```ini
 CACHE=1
 ```
-2. Import ConfigModule into root application
+1. Import ConfigModule into root application
 ```ts
 import { ConfigModule } from '@atlasjs/config';
 @Module({
