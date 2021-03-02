@@ -14,7 +14,7 @@ yarn add @atlasjs/config
 ## Usage
 ---
 1. Create configuration folder structure: Example
-```
+```bash
 config
 |   db.yml
 |   .env
@@ -24,6 +24,7 @@ config
     |   .env
 
 ```
+
  db.yml
 ```yml
 dbname: db
